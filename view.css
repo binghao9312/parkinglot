@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    /* 使用弹性盒子布局 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #0954b6;
+    font-style: bold;
+}
+
+
+.parking-info {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#parking-spaces {
+    font-size: 25px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* 修改按钮样式 */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* 上方间距 */
+}
+
+button:first-child {
+    margin-bottom: 10px; /* 下方间距 */
+}
+
+button:hover {
+    background-color: #0056b3;
+}

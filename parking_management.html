@@ -1,0 +1,83 @@
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+
+
+<script>
+  const firebaseConfig = {
+  apiKey: "AIzaSyBR2-rTYc_1Di5uhkbxdymukV9wNC6AW_o",
+  authDomain: "lazyeee-c2ebc.firebaseapp.com",
+  projectId: "lazyeee-c2ebc",
+  storageBucket: "lazyeee-c2ebc.appspot.com",
+  //messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "lazyeee"
+};
+
+// 初始化 Firebase 应用
+firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+    // 获取剩余停车位数量
+    function getRemainingSpaces() {
+      const dbRef = firebase.database().ref('remainingSpaces');
+  
+      dbRef.once('value', (snapshot) => {
+        const remainingSpaces = snapshot.val();
+        document.getElementById('parking-spaces').textContent = remainingSpaces;
+      });
+    }
+  
+    // 页面加载时调用函数以显示剩余停车位数量
+    window.onload = getRemainingSpaces;
+  </script>
+
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>停車位管理系統 - 管理頁面</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>停車位管理</h1>
+        <div class="parking-info">
+            <p>剩餘停車位數量：<span id="parking-spaces">20</span></p>
+        </div>
+        <button onclick="incrementSpaces()">增加剩餘車位</button>
+        <button onclick="decrementSpaces()">減少剩餘車位</button>
+    </div>
+
+    <script>
+        let remainingSpaces = 20; // 最大停車位數量
+
+        function updateSpaces() {
+            document.getElementById('parking-spaces').textContent = remainingSpaces;
+        }
+
+        function incrementSpaces() {
+            const dbRef = firebase.database().ref('remainingSpaces');
+
+            dbRef.transaction((currentSpaces) => {
+                if (currentSpaces < 20) { // 最大停车位数量
+                    return currentSpaces + 1;
+                }
+            });
+        }
+
+        function decrementSpaces() {
+            const dbRef = firebase.database().ref('remainingSpaces');
+
+            dbRef.transaction((currentSpaces) => {
+                if (currentSpaces > 0) { // 最小停车位数量
+                    return currentSpaces - 1;
+                }
+            });
+        }
+
+        updateSpaces(); // 初始化顯示
+    </script>
+</body>
+</html>

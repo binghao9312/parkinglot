@@ -1,0 +1,27 @@
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>停車位管理系統 - 初始頁面</title>
+    <link rel="stylesheet" href="view.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to PLMS</h1>
+        <div class="parking-info">
+            <p>剩餘停車位數量<span id="parking-spaces"></span></p>
+        </div>
+        <button onclick="goToManagementPage()" class="button">進入管理頁面</button>
+    </div>
+
+    <script>
+        function goToManagementPage() {
+            window.location.href = "parking_management.html";
+        }
+    </script>
+</body>
+</html>
